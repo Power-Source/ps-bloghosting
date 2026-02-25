@@ -270,11 +270,6 @@ jQuery(document).ready(function($){
         /**
          * Get the position from the text input because altering button breaks it
          */
-        var item_name = $( item.currentTarget).attr( 'name' );
-        item_name = item_name.replace( /\[/g, '\\[');
-        item_name = item_name.replace( /\]/g, '\\]');
-        //console.log( item_name );
-
         var row_index = $( $( $( $(item.currentTarget).parents('tr') ).find('td')[1]).find('input')).attr('data-position');
 
         if ( confirm( prosites_levels.confirm_level_delete ) ) {
