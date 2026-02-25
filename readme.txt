@@ -1,9 +1,9 @@
 === PS-Bloghosting ===
-Contributors: DerN3rd (PSOURCE)
+Contributors: PSOURCE (PSOURCE)
 Tags: multisite, blogvorlagen, classicpress, wordpress, psource
 Requires at least: 3.8
 Tested up to: 6.8.1
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -34,60 +34,17 @@ Es enthält alle Extras, die Du zum Aufbau eines funktionsreichen Hosting-Servic
 
 Generiere automatisch Preise und Feature-Tabellen und lege schnell alles zusammen, style und markiere alles, was Deine Webseite zu bieten hat. Gib kostenlosen Benutzern nur Zugriff auf Deine grundlegenden Inhalte und berechne den höchsten Preis für benutzerdefinierte Domains und den Zugriff auf E-Commerce.
 
-[POWERED BY PSOURCE](https://github.com/cp-psource)
+[POWERED BY PSOURCE](https://github.com/Power-Source)
 
 [Projektseite](https://cp-psource.github.io/ps-bloghosting/)
 [GitHub](https://github.com/piestingtal-source/ps-bloghosting)
 
 == ChangeLog ==
 
-= 4.1.3 =
+= 1.0.1 =
 
-* Update PhP8.2
-* Several Bugfixes
-* New Docs
+* Security Fixes (XSS)
 
-= 4.1.2 =
+= 1.0.0 =
 
-* Fix: CSS Tooltips
-* Fix: Deprecated Classes
-* Update: Updater -> 1.3
-* Deprecated Calling get_class() 
-
-= 4.1.1 =
-
-* Fix: Required parameter
-* Update: PSOURCE Updater
-* Fix: Syntax-Fehler
-* Links aktualisiert
-
-= 4.1.0 =
-
-* PhP Fixes
-* jQuery Fixes
-* README.md 
-* Textkorrekturen
-* Fix Premium Themes
-
-= 4.0.9 =
-
-* CSS Anpassungen für Tooltips Einstellungen
-* Textanpassungen
-* Fix: Unsupported operand types
-* Fix: PHP Deprecated:  Required parameter
-
-= 4.0.8 =
-
-* Getestet PhP8.1
-* Fix Deprecated: trim()
-* Fixes für PhP8
-* Textanpassungen
-
-= 4.0.7 =
-
-* Public release
-
-= 4.0.6 =
-
-* Fix depracated-create_function
-* Übersetzt
+* Release

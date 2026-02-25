@@ -6,8 +6,8 @@ title: "PS Bloghosting"
 <h2 align="center" style="color:#38c2bb;">📚 PS Bloghosting</h2>
 
 <div class="menu">
-  <a href="https://github.com/cp-psource/ps-bloghosting/discussions" style="color:#38c2bb;">💬 Forum</a>
-  <a href="https://github.com/cp-psource/ps-bloghosting/releases" style="color:#38c2bb;">📝 Download</a>
+  <a href="https://github.com/Power-Source/ps-bloghosting/discussions" style="color:#38c2bb;">💬 Forum</a>
+  <a href="https://github.com/Power-Source/ps-bloghosting/releases" style="color:#38c2bb;">📝 Download</a>
 </div>
 
 **Das ultimative Bloghosting-Plugin für Multisites verwandelt reguläre Websites in mehrere PRO-Webseite-Abonnementstufen, die Zugriff auf Speicherplatz, Premium-Themen, Premium-Plugins und vieles mehr bieten!**

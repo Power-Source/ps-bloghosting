@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright PSOURCE (https://github.com/cp-psource)
+ * @copyright PSOURCE (https://github.com/Power-Source)
  *
  * @license http://opensource.org/licenses/GPL-2.0 GNU General Public License, version 2 (GPL-2.0)
  *

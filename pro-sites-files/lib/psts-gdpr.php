@@ -4,7 +4,7 @@
  * @subpackage    GDPR
  * @version       3.5.9.1
  *
- * @author        DerN3rd <webmaster@n3rds.work>
+ * @author        PSOURCE <webmaster@n3rds.work>
  *
  * @copyright (c) 2020, PSOURCE (https://n3rds.work)
  */

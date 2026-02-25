@@ -46,7 +46,7 @@ module.exports = function(grunt) {
 					potHeaders: {
 						'poedit': true,
 						'language-team': 'PSOURCE',
-						'report-msgid-bugs-to': 'https://github.com/cp-psource/ps-bloghosting/issues',
+						'report-msgid-bugs-to': 'https://github.com/Power-Source/ps-bloghosting/issues',
 						'last-translator': 'PSOURCE',
 						'x-generator': 'grunt-wp-i18n'
 					},
