@@ -31,6 +31,12 @@
                         if (search) { search.style.display = 'none'; }
                     }
                 });
+                            function escapeHtml(text) {
+                                var div = document.createElement('div');
+                                div.textContent = text;
+                                return div.innerHTML;
+                            }
+
                 var hidden = document.querySelector('.level-select-bar input[name="current_level"]');
                 if (hidden) { hidden.value = level; }
             }
@@ -139,6 +145,11 @@
                 while (Array.from(customFeatures).some(function(el){ return el.value === customName; })) {
                     counter += 1;
                     customName = 'custom-' + (counter + 1);
+                                // Escape user input to prevent XSS
+                                var escapedName = escapeHtml(name || '');
+                                var escapedDescription = escapeHtml(description || '');
+                                var escapedText = escapeHtml(text || '');
+
                 }
 
                 var noneLabel = 'None';
@@ -156,7 +167,7 @@
 
                 var customTextAreas = '';
                 for (var j = 1; j <= levels; j++) {
-                    customTextAreas += '<textarea name="psts[feature_table][' + customName + '][levels][' + j + '][text]">' + text + '</textarea>';
+                    customTextAreas += '<textarea name="psts[feature_table][' + customName + '][levels][' + j + '][text]">' + escapedText + '</textarea>';
                 }
 
                 var html = '';
@@ -168,18 +179,18 @@
                 html += '</td>';
                 html += '<td scope="row" style="padding-left: 20px;"><input type="checkbox" checked="checked" name="psts[feature_table][' + customName + '][visible]" value="1"></td>';
                 html += '<td scope="row">';
-                html += '<div class="text-item">' + name + '</div>';
+                html += '<div class="text-item">' + escapedName + '</div>';
                 html += '<div class="edit-box" style="display:none">';
-                html += '<input class="editor" type="text" name="psts[feature_table][' + customName + '][name]" value="' + name + '" /><br />';
+                html += '<input class="editor" type="text" name="psts[feature_table][' + customName + '][name]" value="' + escapedName + '" /><br />';
                 html += '<span><a class="save-link">' + saveAction + '</a> <a style="margin-left: 10px;" class="reset-link">' + resetAction + '</a></span></div>';
-                html += '<input type="hidden" value="' + name + '" />';
+                html += '<input type="hidden" value="' + escapedName + '" />';
                 html += '</td>';
                 html += '<td scope="row">';
-                html += '<div class="text-item">' + description + '</div>';
+                html += '<div class="text-item">' + escapedDescription + '</div>';
                 html += '<div class="edit-box" style="display:none">';
-                html += '<textarea class="editor" name="psts[feature_table][' + customName + '][description]">' + description + '</textarea><br />';
+                html += '<textarea class="editor" name="psts[feature_table][' + customName + '][description]">' + escapedDescription + '</textarea><br />';
                 html += '<span><a class="save-link">' + saveAction + '</a> <a style="margin-left: 10px;" class="reset-link">' + resetAction + '</a></span></div>';
-                html += '<input type="hidden" value="' + description + '" />';
+                html += '<input type="hidden" value="' + escapedDescription + '" />';
                 html += '</td>';
                 html += '<td scope="row" class="level-settings">' + indicatorOptions + '</td>';
                 html += '<td scope="row">' + customTextAreas + '</td>';
@@ -260,8 +271,8 @@ jQuery(document).ready(function($){
          * Get the position from the text input because altering button breaks it
          */
         var item_name = $( item.currentTarget).attr( 'name' );
-        item_name = item_name.replace( '[', '\[');
-        item_name = item_name.replace( ']', '\]');
+        item_name = item_name.replace( /\[/g, '\\[');
+        item_name = item_name.replace( /\]/g, '\\]');
         //console.log( item_name );
 
         var row_index = $( $( $( $(item.currentTarget).parents('tr') ).find('td')[1]).find('input')).attr('data-position');
