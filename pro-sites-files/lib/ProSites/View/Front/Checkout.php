@@ -532,6 +532,7 @@ if ( ! class_exists( 'ProSites_View_Front_Checkout' ) ) {
 						continue;
 					}
 
+					$months = 1;
 					switch ( $period_key ) {
 						case 'price_1':
 							$months = 1;
@@ -541,6 +542,9 @@ if ( ! class_exists( 'ProSites_View_Front_Checkout' ) ) {
 							break;
 						case 'price_12':
 							$months = 12;
+							break;
+						default:
+							$months = max( 1, (int) str_replace( 'price_', '', $period_key ) );
 							break;
 					}
 
@@ -572,17 +576,15 @@ if ( ! class_exists( 'ProSites_View_Front_Checkout' ) ) {
 					$content .= $period_content;
 
 					$monthly_price = (float)$level_list[$level]['price_1'];
+					$period_total = isset($level_list[$level][$period_key]) ? $level_list[$level][$period_key] : null;
 
-					// Überprüfen, ob $monthly_price und $monthly_calculated numerische Werte sind, bevor die Berechnung durchgeführt wird.
-					if (is_numeric($monthly_price) && is_numeric($monthly_calculated)) {
-						$monthly_calculated = (float)$level_list[$level][$period_key] / $months * 1.0;
+					if ($months > 0 && is_numeric($monthly_price) && is_numeric($period_total)) {
+						$monthly_calculated = (float)$period_total / $months;
 						$difference = ($monthly_price - $monthly_calculated) * $months;
 						$calculated_monthly = ProSites_Helper_UI::rich_currency_format($monthly_calculated);
 						$calculated_saving = ProSites_Helper_UI::rich_currency_format($difference);
 					} else {
-						// Fehlerbehandlung, falls $monthly_price oder $monthly_calculated keine numerischen Werte sind.
-						// Setzen Sie $difference und andere Variablen auf Standardwerte oder ergreifen Sie andere Maßnahmen.
-						$difference = 0; // Oder einen anderen geeigneten Standardwert.
+						$difference = 0;
 						$calculated_monthly = 'N/A';
 						$calculated_saving = 'N/A';
 					}

@@ -41,6 +41,11 @@ Generiere automatisch Preise und Feature-Tabellen und lege schnell alles zusamme
 
 == ChangeLog ==
 
+= 1.0.2 =
+
+* Fix: PHP Warning "Undefined variable $monthly_calculated" im Checkout behoben.
+* Fix: Robuste Monatsberechnung im Checkout für unerwartete price_-Perioden ergänzt.
+
 = 1.0.1 =
 
 * Security Fixes (XSS)
