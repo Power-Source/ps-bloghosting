@@ -483,6 +483,8 @@ class ProSites_Module_Plugins {
 					$psts_plugins = (array) $psts->get_setting( 'pp_plugins' );
 					$levels       = (array) get_site_option( 'psts_levels' );
 					foreach ( $plugins as $file => $p ) {
+						$plugin_level = isset( $psts_plugins[ $file ]['level'] ) ? $psts_plugins[ $file ]['level'] : 'none';
+						$plugin_auto  = isset( $psts_plugins[ $file ]['auto'] ) ? $psts_plugins[ $file ]['auto'] : 0;
 						//skip network only plugins
 						if ( is_network_only_plugin( $file ) || is_plugin_active_for_network( $file ) ) {
 							continue;
@@ -491,16 +493,16 @@ class ProSites_Module_Plugins {
 						<tr>
 							<td>
 								<select name="plugins[<?php echo $file; ?>][level]">
-									<option value="none"<?php selected( @$psts_plugins[ $file ]['level'], 'none' ); ?>><?php _e( 'Keine', 'psts' ) ?></option>
-									<option value="0"<?php selected( @$psts_plugins[ $file ]['level'], 0 ); ?>><?php _e( 'Irgendeines', 'psts' ) ?></option>
+									<option value="none"<?php selected( $plugin_level, 'none' ); ?>><?php _e( 'Keine', 'psts' ) ?></option>
+									<option value="0"<?php selected( $plugin_level, 0 ); ?>><?php _e( 'Irgendeines', 'psts' ) ?></option>
 									<?php
 									foreach ( $levels as $level => $value ) {
 										?>
-										<option value="<?php echo $level; ?>"<?php selected( @$psts_plugins[ $file ]['level'], $level ); ?>><?php echo $level . ': ' . esc_attr( $value['name'] ); ?></option><?php
+										<option value="<?php echo $level; ?>"<?php selected( $plugin_level, $level ); ?>><?php echo $level . ': ' . esc_attr( $value['name'] ); ?></option><?php
 									}
 									?>
 								</select>
-								<label><input type="checkbox" name="plugins[<?php echo $file; ?>][auto]" value="1"<?php checked( @$psts_plugins[ $file ]['auto'] ); ?> /><?php _e( 'Automatisch aktivieren', 'psts' ) ?></label>
+								<label><input type="checkbox" name="plugins[<?php echo $file; ?>][auto]" value="1"<?php checked( $plugin_auto ); ?> /><?php _e( 'Automatisch aktivieren', 'psts' ) ?></label>
 							</td>
 							<th scope="row"><p><?php echo $p['Name'] ?></p></th>
 							<th scope="row"><p><?php echo $p['Version'] ?></p></th>

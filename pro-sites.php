@@ -1173,7 +1173,6 @@ class ProSites {
 
 		//passed all checks, flip one time flag
 		$this->checkout_processed = true;
-		error_log( 'PROSITES: checkout_processed = TRUE' );
 
 		//remove all filters except shortcodes and checkout form
 		remove_all_filters( 'the_content' );
@@ -1216,10 +1215,6 @@ class ProSites {
 			'new_blog'  => ProSites_Helper_ProSite::allow_new_blog() ? 'true' : 'false',
 			'nbt_update_required' => $this->nbt_update_required(),
 		) );
-		error_log( 'PROSITES: checkout script lokalisiert' );
-		error_log( 'PROSITES QUEUE: ' . print_r( wp_scripts()->queue, true ) );
-error_log( 'PROSITES REGISTERED: ' . ( wp_script_is( 'psts-checkout', 'registered' ) ? 'YES' : 'NO' ) );
-error_log( 'PROSITES ENQUEUED: ' . ( wp_script_is( 'psts-checkout', 'enqueued' ) ? 'YES' : 'NO' ) );
 
 		if ( ! current_theme_supports( 'psts_style' ) ) {
 			wp_enqueue_style( 'psts-checkout', $this->plugin_url . 'css/checkout.css', false, $this->version );
@@ -2439,7 +2434,6 @@ error_log( 'PROSITES ENQUEUED: ' . ( wp_script_is( 'psts-checkout', 'enqueued' )
 			return false;
 		}
 		if( $new_amt === 0 ) {
-			error_log("Bloghosting: Der Betrag darf nicht Null sein");
 			return false;
 		}
 		$prorate_amt   = $duration > 0 ? $old->amount * ( $left / $duration ) : 0; //Avoid Divison by zero
@@ -4978,7 +4972,6 @@ function admin_modules() {
 		// output the HTML content
 		$pdf->writeHTML( $html, true, false, true, false, '' );
 		}catch (Exception $e ) {
-			error_log( "TCPDF couldn't write HTML to PDF" . $e->get_error_message() );
 			return '';
 		}
 
