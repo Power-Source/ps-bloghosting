@@ -42,6 +42,7 @@ Generiere automatisch Preise und Feature-Tabellen und lege schnell alles zusamme
 * Veraltetes jQuery modernisiert in der Level Verwaltung
 * PHP-Warnungen im Premium-Plugin-Manager behoben, wenn für ein Plugin noch keine Pro-Sites-Konfiguration vorhanden war.
 * Sichere Behandlung fehlender Einstellungen für Mindestlevel und automatische Aktivierung ergänzt.
+* Checkout CSS angepasst für bessere Ansicht
 
 = 1.0.2 =
 * Fix: PHP Warning "Undefined variable $monthly_calculated" im Checkout behoben.

@@ -685,6 +685,7 @@ li > .period-selector {
 ul.pricing-column ul.feature-section li {
 	padding: 2px 5px;
 	vertical-align: middle;
+	list-style: none;
 }
 
 .feature-section .icon-tick,
@@ -729,11 +730,13 @@ ul.pricing-column ul.feature-section li {
 	position: relative;
 	border-bottom: none;
 	width: 100%;
+	list-style: none;
 }
 
 .pricing-column .title.no-title {
 	border: none;
 	background: none;
+	list-style: none;
 }
 
 .pricing-column .title.no-title:after {
@@ -741,7 +744,7 @@ ul.pricing-column ul.feature-section li {
 }
 
 .pricing-column .summary {
-	/*background: #fff;*/
+	list-style: none;
 	border-width: 1px;
 	border-style: none solid;
 	/*position: relative;*/
@@ -813,6 +816,7 @@ ul.pricing-column ul.feature-section li {
 	/*padding-right: 1px;*/
 	font-weight: bold;
 	text-align: right;
+	list-style: none;
 }
 
 .pricing-column .sub-title.no-title {
@@ -840,6 +844,7 @@ ul.pricing-column ul.feature-section li {
 	border-width: 1px;
 	border-top: none;
 	clear: both;
+	list-style: none;
 }
 
 .pricing-column .button-box button {
@@ -858,7 +863,6 @@ ul.pricing-column ul.feature-section li {
 .pricing-column.featured {
 	/*border:3px solid #888;*/
 	position: relative;
-	top: 1px;
 }
 
 .pricing-column.featured .title {
@@ -868,6 +872,7 @@ ul.pricing-column ul.feature-section li {
 .pricing-column.featured .summary {
 	border-width: 5px;
 	border-bottom: 1px solid #B6B6B6;
+	min-height:fit-content;
 }
 
 .pricing-column.featured .sub-title.no-title {
@@ -963,7 +968,7 @@ ul.pricing-column ul.feature-section li {
 }
 
 .pricing-column.featured .price {
-
+	padding: 20px 0 10px 0;
 }
 
 .pricing-column .feature-section .text,
@@ -994,6 +999,7 @@ ul.pricing-column ul.feature-section li {
 
 .pricing-column li.coupon {
 	clear: both;
+	list-style: none;
 }
 
 #prosites-checkout-table .coupon-wrapper {
@@ -1032,7 +1038,6 @@ ul.pricing-column ul.feature-section li {
 	/*text-decoration: underline;*/
 	border: none;
 	/*font-size: 0.8em;*/
-	width: 10em;
 	padding: 0.5em;
 	margin: 0;
 }
@@ -1052,13 +1057,15 @@ ul.pricing-column ul.feature-section li {
 }
 
 .pricing-column .apply-coupon-link {
-	/*position:absolute;*/
+	border-color: #B6B6B6;
 	cursor: pointer;
 	font-size: 0.8em;
 	position: relative;
-	top: -10px; /* border of input box */
-	/*left:0px;*/
-	/*width:100%;*/
+    padding: 10px 10px 10px 10px;
+    border-style: solid;
+    border-width: 1px;
+    clear: both;
+    list-style: none;
 }
 
 .pricing-column .coupon-box {
@@ -1285,6 +1292,7 @@ ul.pricing-column.chosen-plan {
 .period-selector-container {
 	margin: 0 auto;
 	overflow: hidden;
+	min-width: 350px;
 }
 
 .period-selector-container .period-option {

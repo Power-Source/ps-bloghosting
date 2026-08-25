@@ -576,8 +576,7 @@ if ( ! class_exists( 'ProSites_View_Settings' ) ) {
 				<!--</table>-->
 				<!--<hr />-->
 				<h3 class="psts-settings-title"><br/>EU VAT - Taxamo Integration</h3>
-				<div class="psts-settings-desc psts-description">Setup integration with Taxamo.com to handle your EU VAT
-					requirements.
+				<div class="psts-settings-desc psts-description"><?php echo __( 'Richte die Integration mit Taxamo.com ein, um die Anforderungen bezüglich der EU-Mehrwertsteuer zu erfüllen.', 'psts' ); ?></div>
 				</div>
 				<table class="form-table">
 					<tr valign="top">

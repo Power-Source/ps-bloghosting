@@ -359,7 +359,7 @@ class ProSites_Module_Ads {
 					<td><?php
 						foreach ( $levels as $level => $data ) {
 							echo '<label>';
-							$this->ads_select( $level, @$data['ads'] );
+							$this->ads_select( $level, $data['ads'] ?? 0 );
 							echo ' ' . $level . ' - ' . $data['name'] . '</label><br />';
 						}
 						?>
