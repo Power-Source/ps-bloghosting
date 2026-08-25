@@ -576,7 +576,7 @@ if ( ! class_exists( 'ProSites_Gateway_2Checkout' ) ) {
 		function checkout_js() {
 			?>
 			<script type="text/javascript"> jQuery(document).ready(function () {
-					jQuery("a#twocheckout_cancel").click(function () {
+					jQuery("a#twocheckout_cancel").on('click', function () {
 						if (confirm("<?php echo __('Please note that if you cancel your subscription you will not be immune to future price increases. The price of un-canceled subscriptions will never go up!\n\nAre you sure you really want to cancel your subscription?\nThis action cannot be undone!', 'psts'); ?>")) return true; else return false;
 					});
 				});</script><?php

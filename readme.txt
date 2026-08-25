@@ -34,22 +34,19 @@ Es enthält alle Extras, die Du zum Aufbau eines funktionsreichen Hosting-Servic
 
 Generiere automatisch Preise und Feature-Tabellen und lege schnell alles zusammen, style und markiere alles, was Deine Webseite zu bieten hat. Gib kostenlosen Benutzern nur Zugriff auf Deine grundlegenden Inhalte und berechne den höchsten Preis für benutzerdefinierte Domains und den Zugriff auf E-Commerce.
 
-[POWERED BY PSOURCE](https://github.com/Power-Source)
-
-[Projektseite](https://cp-psource.github.io/ps-bloghosting/)
-[GitHub](https://github.com/piestingtal-source/ps-bloghosting)
-
 == ChangeLog ==
 
-= 1.0.2 =
+= 1.0.3 =
+* jQuery Sortable durch sortable.js ersetzt
+* jQuery UI Tabs durch Vanilla ersetzt
+* Veraltetes jQuery modernisiert in der Level Verwaltung
 
+= 1.0.2 =
 * Fix: PHP Warning "Undefined variable $monthly_calculated" im Checkout behoben.
 * Fix: Robuste Monatsberechnung im Checkout für unerwartete price_-Perioden ergänzt.
 
 = 1.0.1 =
-
 * Security Fixes (XSS)
 
 = 1.0.0 =
-
 * Release

@@ -1173,6 +1173,7 @@ class ProSites {
 
 		//passed all checks, flip one time flag
 		$this->checkout_processed = true;
+		error_log( 'PROSITES: checkout_processed = TRUE' );
 
 		//remove all filters except shortcodes and checkout form
 		remove_all_filters( 'the_content' );
@@ -1187,8 +1188,23 @@ class ProSites {
 		 */
 		do_action( 'psts_checkout_page_load'); //for gateway plugins to hook into
 
-		wp_enqueue_script( 'psts-checkout', $this->plugin_url . 'js/checkout.js', array( 'jquery' ), $this->version );
-		wp_enqueue_script( 'jquery-ui-tabs' );
+		wp_register_script(
+			'psts-gateway-tabs',
+			$this->plugin_url . 'js/psts-gateway-tabs.js',
+			array(),
+			$this->version,
+			true
+		);
+
+		wp_enqueue_script(
+			'psts-checkout',
+			$this->plugin_url . 'js/checkout.js',
+			array(
+				'jquery',
+				'psts-gateway-tabs',
+			),
+			$this->version
+		);
 
 		wp_localize_script( 'psts-checkout', 'prosites_checkout', array(
 			'ajax_url' => ProSites_Helper_ProSite::admin_ajax_url(),
@@ -1200,6 +1216,10 @@ class ProSites {
 			'new_blog'  => ProSites_Helper_ProSite::allow_new_blog() ? 'true' : 'false',
 			'nbt_update_required' => $this->nbt_update_required(),
 		) );
+		error_log( 'PROSITES: checkout script lokalisiert' );
+		error_log( 'PROSITES QUEUE: ' . print_r( wp_scripts()->queue, true ) );
+error_log( 'PROSITES REGISTERED: ' . ( wp_script_is( 'psts-checkout', 'registered' ) ? 'YES' : 'NO' ) );
+error_log( 'PROSITES ENQUEUED: ' . ( wp_script_is( 'psts-checkout', 'enqueued' ) ? 'YES' : 'NO' ) );
 
 		if ( ! current_theme_supports( 'psts_style' ) ) {
 			wp_enqueue_style( 'psts-checkout', $this->plugin_url . 'css/checkout.css', false, $this->version );
@@ -2538,13 +2558,20 @@ class ProSites {
 	}
 
 	function scripts_checkout() {
-		wp_enqueue_script( 'psts-checkout', $this->plugin_url . 'js/checkout.js', array( 'jquery' ), $this->version );
-		wp_enqueue_script( 'jquery-ui-tabs' );
+		wp_enqueue_script(
+			'psts-checkout',
+			$this->plugin_url . 'js/checkout.js',
+			array(
+				'jquery',
+				'psts-gateway-tabs',
+			),
+			$this->version
+		);
 	}
 
 	function scripts_stats() {
-		wp_enqueue_script( 'flot', $this->plugin_url . 'js/jquery.flot.min.js', array( 'jquery' ), $this->version );
-		wp_enqueue_script( 'flot_pie', $this->plugin_url . 'js/jquery.flot.pie.min.js', array(
+		wp_enqueue_script( 'flot', $this->plugin_url . 'js/jquery.flot.js', array( 'jquery' ), $this->version );
+		wp_enqueue_script( 'flot_pie', $this->plugin_url . 'js/jquery.flot.pie.js', array(
 			'jquery',
 			'flot',
 		), $this->version );
@@ -2599,10 +2626,32 @@ class ProSites {
 			'disable_premium_plugin_manager' => __( 'Durch Aktivieren dieses Moduls wird das Premium Plugin Manager-Modul deaktiviert.', 'psts' ),
 		));
 
-		wp_register_script( 'psts-js-levels', $this->plugin_url . 'js/psts-admin-levels.js', array(
-			'jquery',
-			'jquery-ui-sortable',
-		), $this->version );
+		wp_register_script(
+			'psts-sortable',
+			$this->plugin_url . 'js/vendor/sortable.min.js',
+			array(),
+			'1.15.6',
+			true
+		);
+
+		wp_register_script(
+			'psts-js-levels',
+			$this->plugin_url . 'js/psts-admin-levels.js',
+			array(
+				'jquery',
+				'psts-sortable',
+			),
+			$this->version,
+			true
+		);
+
+		wp_register_script(
+			'psts-gateway-tabs',
+			$this->plugin_url . 'js/psts-gateway-tabs.js',
+			array(),
+			$this->version,
+			true
+		);
 
 		wp_localize_script( 'psts-js-levels', 'prosites_levels', array(
 			'confirm_level_delete' => __( 'Bist Du sicher, dass Du dieses Level wirklich entfernen möchtest? Dadurch werden auch alle Funktionseinstellungen für die Ebene gelöscht.', 'psts' ),
@@ -2611,7 +2660,7 @@ class ProSites {
 
 		//Check if chosen js is already registered
 		if ( ! wp_script_is( 'chosen', 'registered' ) ) {
-			wp_register_script( 'chosen', $this->plugin_url . 'js/chosen/chosen.jquery.min.js' );
+			wp_register_script( 'chosen', $this->plugin_url . 'js/chosen/chosen.jquery.js' );
 		}
 
 	}
@@ -2655,7 +2704,6 @@ class ProSites {
 		$this->load_chosen();
 
 		wp_enqueue_script( 'psts-js-levels' );
-		wp_enqueue_script( 'jquery-ui-sortable' );
 	}
 
 	function css_pricing() {
@@ -3703,7 +3751,7 @@ if ( $active_pro_sites ) {
 			}
 
 			var previousPoint = null;
-			$("#monthly_signup_stats").bind("plothover", function (event, pos, item) {
+			$("#monthly_signup_stats").on("plothover", function (event, pos, item) {
 				if (item) {
 					if (previousPoint != item.datapoint) {
 						previousPoint = item.datapoint;
@@ -3722,7 +3770,7 @@ if ( $active_pro_sites ) {
 					previousPoint = null;
 				}
 			});
-			$("#weekly_signup_stats").bind("plothover", function (event, pos, item) {
+			$("#weekly_signup_stats").on("plothover", function (event, pos, item) {
 				if (item) {
 					if (previousPoint != item.datapoint) {
 						previousPoint = item.datapoint;

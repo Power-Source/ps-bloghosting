@@ -174,7 +174,7 @@ var Taxamo = (function(my) {
                 content += data.country_name;
                 content += "</b>.</span>&nbsp;";
             }
-            $(button).click(function (e) {
+            $(button).on('click', function (e) {
                 try {
                     my.showSelectCountryModal(data);
                 } finally {
@@ -191,7 +191,7 @@ var Taxamo = (function(my) {
                 content += data.countries.by_billing.name;
             }
             content += "</b></span>&nbsp;";
-            $(button).click(function (e) {
+            $(button).on('click', function (e) {
                 try {
                     my.showSelectCountryModal(data);
                 } finally {
@@ -262,7 +262,7 @@ jQuery( document ).ready( function ( $ ) {
         }
     }
 
-    $(this).bind( 'psts:gateways_refreshed', function( e ) {
+    $(this).on( 'psts:gateways_refreshed', function( e ) {
 
         the_evidence = Taxamo.getEvidenceData();
 

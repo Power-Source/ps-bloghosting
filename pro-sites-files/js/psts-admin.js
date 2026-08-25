@@ -132,8 +132,8 @@ jQuery(document).ready(function($){
             wrapper.fadeOut(50);
         });
     //If chosen function exists and there is any select with class chosen
-    if ( jQuery.isFunction(jQuery.fn.chosen) && jQuery('.chosen').length ) {
-        jQuery('.chosen').chosen({disable_search_threshold: 10}).change(function () {
+    if ( typeof jQuery.fn.chosen === 'function' && jQuery('.chosen').length ) {
+        jQuery('.chosen').chosen({disable_search_threshold: 10}).on('change', function () {
             jQuery(this).trigger('chosen:updated')
         });
     }
@@ -143,7 +143,7 @@ jQuery(document).ready(function($){
      */
     var height = $('.psts-tab-container .psts-tabs').height() + 10;
     $('.psts-wrap .psts-settings').css('min-height', height);
-    $('#psts_ProSites_Module_Plugins, #psts_ProSites_Module_Plugins_Manager').change(function () {
+    $('#psts_ProSites_Module_Plugins, #psts_ProSites_Module_Plugins_Manager').on('change', function () {
         if ($(this).is(':checked')) {
             var id = $(this).attr('id');
             if (id == 'psts_ProSites_Module_Plugins') {

@@ -39,13 +39,13 @@ class ProSites_Module_UpgradeAdminLinks {
 					$(document).ready(function() {
 						var new_key;
 
-						$('.psts-ual-menu-item-remove').click(function(event) {
+						$('.psts-ual-menu-item-remove').on('click', function(event) {
 							event.preventDefault();
 
 							$(this).parent().remove();
 						});
 
-						$('#psts-ual-menu-item-add').click(function(event) {
+						$('#psts-ual-menu-item-add').on('click', function(event) {
 							event.preventDefault();
 
 							var item_new = $('#psts-ual-menu-item-new').clone().removeAttr('id').show();

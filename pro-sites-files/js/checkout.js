@@ -37,7 +37,7 @@ jQuery( document ).ready( function ( $ ) {
         }
     }
 
-    $( 'div.pblg-checkout-opt' ).click( function ( e ) {
+    $( 'div.pblg-checkout-opt' ).on( 'click', function ( e ) {
         var target = e.currentTarget;
         //var values = $('input', this).val().split(':');
         var level_parent = $( target ).parents( 'tr' )[ 0 ];
@@ -91,13 +91,13 @@ jQuery( document ).ready( function ( $ ) {
 
     } );
 
-    jQuery( '#psts-coupon-link' ).click( function () {
+    jQuery( '#psts-coupon-link' ).on( 'click', function () {
         $( '#psts-coupon-link' ).hide();
         $( '#psts-coupon-code' ).show();
         return false;
     } );
 
-    jQuery( '#psts-receipt-change a' ).click( function () {
+    jQuery( '#psts-receipt-change a' ).on( 'click', function () {
         $( '#psts-receipt-change' ).hide();
         $( '#psts-receipt-input' ).show();
         return false;
@@ -105,8 +105,8 @@ jQuery( document ).ready( function ( $ ) {
     // Bind events for the pricing table
     if ( jQuery( '#plans-table > .tab-menu' ).length > 0 ) {
         jQuery( '#plans-table > .tab-menu > li > a' )
-            .unbind( 'click' )
-            .bind( 'click', function ( event ) {
+            .off( 'click' )
+            .on( 'click', function ( event ) {
                 event.preventDefault();
                 jQuery( '#plans-table > .tab-menu > li' ).removeClass( 'selected' );
                 jQuery( this ).parent().addClass( 'selected' );
@@ -120,8 +120,8 @@ jQuery( document ).ready( function ( $ ) {
     }
     if ( jQuery( '.button.choose-plan' ).length > 0 ) {
         jQuery( '.button.choose-plan' )
-            .unbind( 'click' )
-            .bind( 'click', function ( event ) {
+            .off( 'click' )
+            .on( 'click', function ( event ) {
                 event.preventDefault();
                 var selected_period = jQuery( '.tab-menu > .selected.period > a' ).data( 'period' );
                 var selected_level = jQuery( this ).data( 'level' );
@@ -133,33 +133,50 @@ jQuery( document ).ready( function ( $ ) {
                 jQuery( '#psts_level' ).val( selected_level );
             } );
         jQuery( '.module.features .feature-name.column' )
-            .unbind( 'mouseover' )
-            .bind( 'mouseover', function ( event ) {
+            .off( 'mouseover' )
+            .on( 'mouseover', function ( event ) {
                 jQuery( '.helper.wrapper' ).hide();
                 jQuery( this ).find( '.helper.wrapper' ).show();
             } )
-            .unbind( 'mouseout' )
-            .bind( 'mouseout', function ( event ) {
+            .off( 'mouseout' )
+            .on( 'mouseout', function ( event ) {
                 jQuery( '.helper.wrapper' ).hide();
             } );
     }
 
+    console.log('PROSITES CHECKOUT.JS: NEW CHECKOUT FORM ERREICHT');
     /* New checkout form */
-    $( '.pricing-column .period-selector select, .period-selector-container input' ).change( function ( e ) {
-        var element = e.currentTarget;
-        var period_class = $( element ).val();
-        var period = parseInt( period_class.replace( 'price_', '' ) );
+    jQuery( '.pricing-column .period-selector select, .period-selector-container input' ).on( 'change', function ( e ) {
+        var period_class = jQuery( this ).val();
+        var period = parseInt( period_class.replace( 'price_', '' ), 10 );
 
-        // Set the period required for gateways... also set it on the pricing table
-        $( '.gateways [name=period]' ).val( period );
-        $( '#prosites-checkout-table' ).attr( 'data-period', period );
+        // Set the period required for gateways and checkout.
+        jQuery( '.gateways [name=period]' ).val( period );
+        jQuery( '#prosites-checkout-table' ).attr( 'data-period', period );
 
-        $( '.pricing-column [class*="price_"]' ).removeClass( 'hide' );
-        $( '.pricing-column [class*="price_"]' ).hide();
-        $( '.pricing-column [class$="' + period_class + '"]' ).show();
-        set_same_height( $( '.pricing-column .title' ) );
-        set_same_height( $( '.pricing-column .summary' ), false );
-        set_same_height( $( '.pricing-column .sub-title' ), false );
+        // Hide all prices.
+        jQuery( '.pricing-column .price[class*="price_"]' )
+            .removeClass( 'hide' )
+            .hide();
+
+        // Show selected period.
+        jQuery( '.pricing-column .price.' + period_class )
+            .removeClass( 'hide' )
+            .show();
+
+        // Hide all period summaries.
+        jQuery( '.pricing-column .level-summary[class*="price_"]' )
+            .removeClass( 'hide' )
+            .hide();
+
+        // Show selected period summary.
+        jQuery( '.pricing-column .level-summary.' + period_class )
+            .removeClass( 'hide' )
+            .show();
+
+        set_same_height( jQuery( '.pricing-column .title' ) );
+        set_same_height( jQuery( '.pricing-column .summary' ), false );
+        set_same_height( jQuery( '.pricing-column .sub-title' ), false );
     } );
 
 	function get_offset_diff( element ) {
@@ -194,18 +211,18 @@ jQuery( document ).ready( function ( $ ) {
         }
 
         // reset heights
-        $( elements ).css( 'height', 'auto' );
+        jQuery( elements ).css( 'height', 'auto' );
 
-        $.each( elements, function ( index, item ) {
-            var item_height = $( item ).height();
-            if ( $( item ).parents( '.pricing-column.featured' )[ 0 ] && use_featured ) {
+        jQuery.each( elements, function ( index, item ) {
+            var item_height = jQuery( item ).height();
+            if ( jQuery( item ).parents( '.pricing-column.featured' )[ 0 ] && use_featured ) {
             } else {
                 if ( max_height < item_height ) {
                     max_height = item_height;
                 }
             }
         } );
-	    $.each(elements, function (index, item) {
+	    jQuery.each(elements, function (index, item) {
 		    var curr_element = jQuery(item);
 		    var li_height = 0;
 		    var is_featured_column_notitle = false;
@@ -217,24 +234,24 @@ jQuery( document ).ready( function ( $ ) {
 			    li_height = max_height;
 		    }
             //For Single Period, Single Level, Set height auto of title
-            if( jQuery(elements).hasClass('title') ) {
+            if( curr_element.hasClass('title') ) {
                 var period_selector = jQuery('.period-selector').length;
                 var pricing_column = jQuery('.pricing-column').length;
                 if( period_selector == 0 && pricing_column == 1 ) {
-                    $(item).css( { 'height' : 'auto' } );
+                    curr_element.css( { 'height' : 'auto' } );
                     return;
                 }
             }
-		    if ($(item).parents('.pricing-column.featured')[0] && use_featured && li_height > 0 ) {
-			    //if( $( item).height < max_height ) {
+		    if ( jQuery(item).parents('.pricing-column.featured')[0] && use_featured && li_height > 0 ) {
+			    //if( jQuery( item).height < max_height ) {
 			    if( !is_featured_column_notitle ) {
-				    $(item).css( { 'height' : li_height + 15 } );
+				    jQuery(item).css( { 'height' : li_height + 15 } );
 			    }else{
-				    $(item).height(li_height + 15);
+				    jQuery(item).height(li_height + 15);
 			    }
 			    //}
 		    } else {
-			    $(item).height( li_height );
+			    jQuery(item).height( li_height );
 		    }
 	    });
     }
@@ -283,8 +300,8 @@ jQuery( document ).ready( function ( $ ) {
     set_same_height( $( '.pricing-column .sub-title' ), false );
 
     // =========== APPLY COUPONS =========== //
-    $( '#prosites-checkout-table [name=apply-coupon-link]' ).unbind( 'click' );
-    $( '#prosites-checkout-table [name=apply-coupon-link]' ).click( function ( e ) {
+    $( '#prosites-checkout-table [name=apply-coupon-link]' ).off( 'click' );
+    $( '#prosites-checkout-table [name=apply-coupon-link]' ).on( 'click', function ( e ) {
         var input_box = $( '#prosites-checkout-table .coupon-box input' );
         var icon = $( '#prosites-checkout-table .coupon .coupon-status' );
         var pos = input_box.position();
@@ -434,8 +451,8 @@ jQuery( document ).ready( function ( $ ) {
 
 
     // ====== CHOOSE BUTTON ======= //
-    $( '.choose-plan-button, .free-plan-link a' ).unbind( 'click' );
-    $( '.choose-plan-button, .free-plan-link a' ).click( function ( e ) {
+    $( '.choose-plan-button, .free-plan-link a' ).off( 'click' );
+    $( '.choose-plan-button, .free-plan-link a' ).on( 'click', function ( e ) {
 
         var target = e.currentTarget;
         var free_link = $( target ).is( 'a' );
@@ -540,12 +557,12 @@ jQuery( document ).ready( function ( $ ) {
     }
 
     //More than 1 gateway?, Tabs
-    if( jQuery('#gateways>div').length > 1 ) {
-        $('#gateways').tabs();
+    if ( $('#gateways > div').length > 1 ) {
+        window.pstsInitGatewayTabs();
     }
 
     // Cancellation confirmation
-    $( 'a.cancel-prosites-plan' ).click( function ( e ) {
+    $( 'a.cancel-prosites-plan' ).on( 'click', function ( e ) {
 
         if ( confirm( prosites_checkout.confirm_cancel ) ) {
 
@@ -556,7 +573,7 @@ jQuery( document ).ready( function ( $ ) {
     } );
 
     // Check user/blog availability
-    $( '#check-prosite-blog' ).unbind( "click" );
+    $( '#check-prosite-blog' ).off( "click" );
     $( '#check-prosite-blog' ).on( "click", bind_availability_check );
 
     function bind_availability_check( e ) {
@@ -723,7 +740,7 @@ jQuery( document ).ready( function ( $ ) {
         if ( typeof response.form != 'undefined' ) {
 
             $( '#prosites-signup-form-checkout' ).replaceWith( response.form );
-            $( '#check-prosite-blog' ).unbind( "click" );
+            $( '#check-prosite-blog' ).off( "click" );
             $( '#check-prosite-blog' ).on( "click", bind_availability_check );
             $( '#prosites-signup-form-checkout' ).removeClass( 'hidden' );
             $( '#prosites-checkout-table' ).attr( 'data-site-registered', 'yes' );
@@ -750,11 +767,11 @@ jQuery( document ).ready( function ( $ ) {
 
             // Rebind Stripe -- find a generic way to make it easier for custom gateways
             if ( typeof stripePaymentFormSubmit !== 'undefined' ) {
-                $( "#stripe-payment-form" ).unbind( "submit" );
+                $( "#stripe-payment-form" ).off( "submit" );
                 $( "#stripe-payment-form" ).on( 'submit', stripePaymentFormSubmit );
             }
 
-            $( '#gateways' ).tabs();
+            window.pstsInitGatewayTabs();
             // if ( !is_free ) {
                 $( '.gateways.checkout-gateways' ).removeClass( 'hidden' );
             // }
@@ -833,7 +850,7 @@ jQuery( document ).ready( function ( $ ) {
 
     // Confirm before cancelling Stripe subscriptions.
     if ( typeof stripe_checkout !== 'undefined' ) {
-        $( 'a#stripe_cancel' ).click( function () {
+        $( 'a#stripe_cancel' ).on( 'click', function () {
             return confirm( prosites_checkout.confirm_cancel );
         });
     }
@@ -844,7 +861,7 @@ jQuery( document ).ready( function ( $ ) {
             $( '#cc_paypal_checkout' ).hide();
             $( '#paypal_processing' ).show();
         } );
-        $( 'a#pypl_cancel' ).click( function ( e ) {
+        $( 'a#pypl_cancel' ).on( 'click', function ( e ) {
             return confirm( prosites_checkout.confirm_cancel );
         } );
     }

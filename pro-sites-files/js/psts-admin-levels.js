@@ -257,13 +257,13 @@ jQuery(document).ready(function($){
     // Fallback defaults if localization is missing
     if (typeof window.prosites_levels === 'undefined') {
         window.prosites_levels = {
-            confirm_level_delete: 'Delete level?',
-            confirm_feature_delete: 'Delete feature?'
+            confirm_level_delete: 'Level löschen?',
+            confirm_feature_delete: 'Feature löschen?'
         };
     }
 
     // Confirm deleting level
-    $('[name^="delete_level"]').click(function ( item ) {
+    $('[name^="delete_level"]').on('click', function ( item ) {
         //Disable Save button, as it creates problem
         jQuery('input[name="save_levels"]').prop('disabled', true);
 
@@ -292,7 +292,7 @@ jQuery(document).ready(function($){
     }
 
     // And remember to update it when the user checks the enabled boxes
-    $('#enable_1').change(function () {
+    $('#enable_1').on('change', function () {
         if (this.checked) {
             $('.price-1').removeAttr('disabled');
         } else {
@@ -300,7 +300,7 @@ jQuery(document).ready(function($){
         }
         prosites_levels_mark_dirty();
     });
-    $('#enable_3').change(function () {
+    $('#enable_3').on('change', function () {
         if (this.checked) {
             $('.price-3').removeAttr('disabled');
         } else {
@@ -308,7 +308,7 @@ jQuery(document).ready(function($){
         }
         prosites_levels_mark_dirty();
     });
-    $('#enable_12').change(function () {
+    $('#enable_12').on('change', function () {
         if (this.checked) {
             $('.price-12').removeAttr('disabled');
         } else {
@@ -317,7 +317,7 @@ jQuery(document).ready(function($){
         prosites_levels_mark_dirty();
     });
 
-    $('#prosites-level-list tbody input').change( function() {
+    $('#prosites-level-list tbody input').on('change', function() {
         prosites_levels_mark_dirty();
     });
 
@@ -325,23 +325,21 @@ jQuery(document).ready(function($){
     /* ---- ---- ---- LEVEL SETTINGS PAGE ---- ---- ---- */
 
     // Make the levels sortable
-    $('#prosites-level-list.level-settings tbody').sortable({
-        opacity: 0.5,
-        cursor: 'pointer',
-        axis: 'y',
-        placeholder: "prosite-level-placeholder",
-        update: function() {
+    var levelSettingsList = document.querySelector(
+        '#prosites-level-list.level-settings tbody'
+    );
 
-            // Leave this here for now... just in case we want to make it update via AJAX
-            //var ordr = jQuery(this).sortable('serialize') + '&action=list_update_order';
-            //jQuery.post(ajaxurl, ordr, function(response){
-            //    //alert(response);
-            //});
+    if ( levelSettingsList && typeof Sortable !== 'undefined' ) {
+        new Sortable( levelSettingsList, {
+            direction: 'vertical',
+            ghostClass: 'prosite-level-placeholder',
 
-            prosite_update_level_rows();
-            prosites_levels_mark_dirty();
-        }
-    });
+            onEnd: function () {
+                prosite_update_level_rows();
+                prosites_levels_mark_dirty();
+            }
+        } );
+    }
 
     function prosite_update_level_rows( args ) {
         var rows = $('#prosites-level-list tbody tr');
@@ -417,49 +415,55 @@ jQuery(document).ready(function($){
 
     /* ---- ---- ---- PRICING SETTINGS PAGE ---- ---- ---- */
     // Make the levels sortable (guard if sortable is missing)
-    if ($.fn.sortable) {
-        $('#prosites-level-list.pricing-table tbody').sortable({
-            opacity: 0.5,
-            cursor: 'pointer',
-            axis: 'y',
-            placeholder: "prosite-level-placeholder",
-            update: function() {
+    var pricingLevelsList = document.querySelector(
+        '#prosites-level-list.pricing-table tbody'
+    );
 
-                var rows = $('#prosites-level-list tbody tr');
-                var level_order = new Array();
+    if ( pricingLevelsList && typeof Sortable !== 'undefined' ) {
+        new Sortable( pricingLevelsList, {
+            direction: 'vertical',
+            ghostClass: 'prosite-level-placeholder',
 
-                $.each( rows, function( index, row ) {
-                    level_order[ level_order.length ] = $( row ).attr('data-level');
+            onEnd: function () {
+                var rows = pricingLevelsList.querySelectorAll( 'tr' );
+                var level_order = [];
 
-                    $(row).removeClass('alternate');
-                    if ( index % 2 == 0) {
-                        $(row).addClass('alternate');
+                $.each( rows, function ( index, row ) {
+                    level_order.push( $( row ).attr( 'data-level' ) );
+
+                    $( row ).removeClass( 'alternate' );
+
+                    if ( index % 2 === 0 ) {
+                        $( row ).addClass( 'alternate' );
                     }
-
                 } );
 
-                level_order = level_order.join( ',' );
-                $('input[name="psts[pricing_levels_order]"]').val( level_order );
+                $( 'input[name="psts[pricing_levels_order]"]' )
+                    .val( level_order.join( ',' ) );
             }
-        });
+        } );
     }
 
     /* ---- ---- ---- COMPARISON/ FEATURE TABLE PAGE ---- ---- ---- */
-   // Make the features sortable
+    // Make the features sortable
     function make_features_sortable() {
-        if (!$.fn.sortable) {
+
+        var featureList = document.querySelector(
+            '#prosites-level-list.feature-table tbody'
+        );
+
+        if ( ! featureList || typeof Sortable === 'undefined' ) {
             return;
         }
 
-        $('#prosites-level-list.feature-table tbody').sortable({
-            opacity: 0.5,
-            cursor: 'pointer',
-            axis: 'y',
-            placeholder: "prosite-level-placeholder",
-            update: function () {
+        new Sortable( featureList, {
+            direction: 'vertical',
+            ghostClass: 'prosite-level-placeholder',
+
+            onEnd: function () {
                 rearrange_feature_rows();
             }
-        });
+        } );
     }
 
     function rearrange_feature_rows() {
@@ -680,15 +684,15 @@ jQuery(document).ready(function($){
 
     function set_inline_editing() {
         // Inline editing
-        $('#prosites-level-list.feature-table .text-item').unbind( 'dblclick' );
-        $('#prosites-level-list.feature-table .text-item').dblclick(function (e) {
+        $('#prosites-level-list.feature-table .text-item').off( 'dblclick' );
+        $('#prosites-level-list.feature-table .text-item').on('dblclick', function (e) {
             var element = e.currentTarget;
             $(element).next().show();
             $(element).hide();
         });
 
-        $('#prosites-level-list.feature-table .save-link').unbind( 'click' );
-        $('#prosites-level-list.feature-table .save-link').click(function (e) {
+        $('#prosites-level-list.feature-table .save-link').off( 'click' );
+        $('#prosites-level-list.feature-table .save-link').on('click', function (e) {
             var element = e.currentTarget;
             var text = $($(element).parents('td')[0]).find('.text-item');
             var parent = $($(element).parents('div')[0]);
@@ -699,8 +703,8 @@ jQuery(document).ready(function($){
             $(parent).hide();
         });
 
-        $('#prosites-level-list.feature-table .reset-link').unbind( 'click' );
-        $('#prosites-level-list.feature-table .reset-link').click(function (e) {
+        $('#prosites-level-list.feature-table .reset-link').off( 'click' );
+        $('#prosites-level-list.feature-table .reset-link').on('click', function (e) {
             var element = e.currentTarget;
             var text = $($(element).parents('td')[0]).find('.text-item');
             var parent = $($(element).parents('div')[0]);
@@ -714,8 +718,8 @@ jQuery(document).ready(function($){
             $(parent).hide();
         });
 
-        $('#prosites-level-list.feature-table .order-col .delete').unbind( 'click' );
-        $('#prosites-level-list.feature-table .order-col .delete').click( function (e) {
+        $('#prosites-level-list.feature-table .order-col .delete').off( 'click' );
+        $('#prosites-level-list.feature-table .order-col .delete').on( 'click', function (e) {
 
             if ( confirm( prosites_levels.confirm_feature_delete ) ) {
                 var element = e.currentTarget;

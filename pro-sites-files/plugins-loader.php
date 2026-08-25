@@ -9,6 +9,7 @@ class ProSites_PluginLoader {
 		'ProSites_Module_ProWidget' => 'badge-widget',
 		'ProSites_Module_BP' => 'buddypress',
 		'ProSites_Module_BulkUpgrades' => 'bulk-upgrades',
+		'ProSites_Module_MarketPress_Access' => 'marketpress-access',
 		'ProSites_Module_PSeCommerce_Global' => 'psecommerce-filter',
 		'ProSites_Module_PayToBlog' => 'pay-to-blog',
 		'ProSites_Module_PostThrottling' => 'post-throttling',

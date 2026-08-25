@@ -466,7 +466,7 @@ class ProSites_Module_Ads {
 		<div class="wrap">
 		<script type="text/javascript">
 			jQuery(document).ready(function () {
-				jQuery('input#submit_remove').click(function () {
+				jQuery('input#submit_remove').on('click', function () {
 					var answer = confirm("<?php _e('Bist Du sicher, dass Du diese Webseiten wirklich entfernen möchtest?', 'psts'); ?>")
 					if (answer) {
 						return true;
