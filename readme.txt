@@ -1,38 +1,186 @@
-=== PS-Bloghosting ===
-Contributors: PSOURCE (PSOURCE)
+=== PS Bloghosting ===
+Contributors: PSOURCE
 Tags: multisite, blogvorlagen, classicpress, wordpress, psource
-Requires at least: 3.8
-Tested up to: 6.8.1
-Stable tag: 1.0.1
-Requires PHP: 7.0
+Requires at least: 4.9
+WordPress: 7.1.0
+ClassicPress: 2.7.1
+Stable tag: 1.0.3
+Requires PHP: 8.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Das ultimative Bloghosting-Plugin für Multisites verwandelt reguläre Websites in mehrere PRO-Webseite-Abonnementstufen, die Zugriff auf Speicherplatz, Premium-Themen, Premium-Plugins und vieles mehr bieten!
+PS Bloghosting verwandelt Deine WordPress- oder ClassicPress-Multisite in eine leistungsfähige Bloghosting-Plattform mit kostenlosen und kostenpflichtigen Hosting-Stufen, Premium-Plugins, Premium-Themes, Abonnements und zahlreichen weiteren Funktionen.
 
 == Description ==
 
-Erstelle und monetarisiere Dein eigenes Netzwerk vom Typ WordPress.com mit Premium-Diensten und kostenpflichtigen Upgrades mithilfe von PS Bloghosting.
-PS Bloghosting kann ein Netzwerk mit Millionen von Blogs versorgen – und tut das auch. Wir haben PS Bloghosting entwickelt, um die Möglichkeit zu geben ein eigenes WordPress.com zu erstellen und zu verwalten, eines der größten und profitabelsten Netzwerke der Welt. 
-Das Seiten-Management erleichtert die Arbeit und ermöglicht es Dir, Dein Geschäft auszubauen.
+PS Bloghosting ermöglicht Dir, Dein eigenes Bloghosting-System auf Basis von WordPress Multisite oder ClassicPress Multisite aufzubauen.
 
-= Biete Premium-Upgrades an =
+Du kannst beliebig viele Hosting-Stufen erstellen und für jede Stufe individuelle Funktionen, Preise und Zugriffsrechte festlegen.
 
-Stelle Benutzern den Zugriff auf Deine Premium-Hosting-Services in Rechnung. Ermögliche Benutzern in Deinem Netzwerk ein Basiskonto, lade sie aber auch zu einem Upgrade für werbefreies Bloggen, einem 24/7 Experten-Support und erstklassigen Produkten ein.
+Damit kannst Du beispielsweise kostenlose Webseiten anbieten und zusätzliche Funktionen über kostenpflichtige Upgrades freischalten.
 
-= Gebühr für Deine Dienste =
+PS Bloghosting basiert ursprünglich auf Pro Sites von WPMU DEV und wird heute als eigenständiges Projekt unter dem Namen PS Bloghosting innerhalb des PSOURCE-Projekts weiterentwickelt.
 
-PS Bloghosting enthält alle „Extras“, die Du zum Erstellen eines funktionsreichen Hosting-Service benötigst. Biete Themen-Upgrades, Plugin-Upgrades, Experten-Support, werbefreies Bloggen, unbegrenztes Veröffentlichen, Domain-Mapping, erhöhten Speicherplatz und BuddyPress-Support.
+Der Code wurde und wird dabei Schritt für Schritt modernisiert und an aktuelle PHP-, WordPress- und ClassicPress-Versionen angepasst.
 
-= Pauschalangebote verkaufen =
+= 💎 Premium-Upgrades anbieten =
 
-Erstelle abgestufte Mitgliedschaftsstufen mit Produkten und Dienstleistungen, die eine Vielzahl von Benutzern ansprechen. Füge so viele Ebenen hinzu, wie Du möchtest, und bündel die besten Dienste Deines Netzwerks.
+Biete Deinen Benutzern unterschiedliche Hosting-Stufen an und schalte abhängig vom gewählten Paket zusätzliche Funktionen frei.
 
-Es enthält alle Extras, die Du zum Aufbau eines funktionsreichen Hosting-Service benötigst.
+Mögliche Premium-Funktionen sind beispielsweise:
 
-= Eingebaute Preistabelle =
+Werbefreie Webseiten
+Mehr Speicherplatz
+Premium-Plugins
+Premium-Themes
+Zusätzliche Veröffentlichungsmöglichkeiten
+BuddyPress-Funktionen
+Premium-Support
+Zusätzliche werbefreie Webseiten
+Individuelle Hosting-Funktionen
 
-Generiere automatisch Preise und Feature-Tabellen und lege schnell alles zusammen, style und markiere alles, was Deine Webseite zu bieten hat. Gib kostenlosen Benutzern nur Zugriff auf Deine grundlegenden Inhalte und berechne den höchsten Preis für benutzerdefinierte Domains und den Zugriff auf E-Commerce.
+Du entscheidest selbst, welche Funktionen zu welchem Hosting-Level gehören.
+
+= 💰 Eigene Hosting-Pakete erstellen =
+
+Erstelle beliebig viele Hosting-Level und lege für jedes Level eigene Preise und Leistungen fest.
+
+Du kannst beispielsweise kostenlose, einfache und umfangreiche Premium-Pakete anbieten.
+
+PS Bloghosting unterstützt sowohl kostenlose als auch kostenpflichtige Hosting-Level und wiederkehrende Abonnements.
+
+= 📊 Integrierte Preistabelle =
+
+PS Bloghosting kann Deine verfügbaren Hosting-Level übersichtlich in einer Preistabelle darstellen.
+
+Benutzer sehen dadurch auf einen Blick:
+
+Das aktuelle Hosting-Level
+Verfügbare Upgrades
+Preise
+Abrechnungsintervalle
+Enthaltene Funktionen
+
+= 💳 Zahlungsabwicklung =
+
+PS Bloghosting unterstützt verschiedene Zahlungsarten.
+
+Je nach aktivierten Gateways stehen unter anderem folgende Möglichkeiten zur Verfügung:
+
+PayPal
+Stripe
+Manuelle Zahlungen
+
+Der Checkout ist direkt in PS Bloghosting integriert.
+
+= 📈 Statistiken =
+
+Behalte die Entwicklung Deines Bloghosting-Netzwerks im Blick.
+
+PS Bloghosting stellt unter anderem Informationen zu folgenden Bereichen bereit:
+
+Aktive Webseiten
+Neue Registrierungen
+Neue Upgrades
+Kündigungen
+Aktive Testzeiträume
+Aktivitäten
+Hosting-Level
+Zahlungsanbieter
+Abonnementverläufe
+Historische Entwicklungen
+
+= 🧩 Modulares System =
+
+PS Bloghosting ist modular aufgebaut.
+
+Du aktivierst nur die Funktionen, die Du tatsächlich benötigst.
+
+Je nach Konfiguration stehen unter anderem folgende Module zur Verfügung:
+
+Advertising
+Bulk Upgrades
+BuddyPress-Einschränkungen
+Veröffentlichungs-Limits
+Pay-to-Blog
+Beitrags- und Seiten-Limits
+Premium Plugins
+Premium Support
+Premium Themes
+XML-RPC-Einschränkungen
+Ungefiltertes HTML
+Upload-Limits
+
+= 🔌 Premium Plugins =
+
+Mit dem Premium-Plugins-Modul kannst Du Plugins gezielt für bestimmte Hosting-Level freigeben.
+
+Damit kannst Du beispielsweise Basis-Plugins für kostenlose Webseiten anbieten und zusätzliche Plugins für zahlende Kunden freischalten.
+
+= 🎨 Premium Themes =
+
+Auch Themes können abhängig vom Hosting-Level freigeschaltet werden.
+
+So kannst Du Deinen Benutzern unterschiedliche Gestaltungsmöglichkeiten anbieten.
+
+= 📧 Automatische E-Mails =
+
+PS Bloghosting kann verschiedene E-Mail-Benachrichtigungen automatisch versenden.
+
+Damit kannst Du beispielsweise:
+
+Neue Benutzer informieren
+Registrierungen bestätigen
+Zahlungsinformationen versenden
+Benutzer über Änderungen informieren
+Rückkehrangebote nach einer Kündigung versenden
+
+= 🎟️ Testzeiträume und Gutscheine =
+
+Biete kostenlose Testzeiträume an oder verwende Gutscheine und Rabatte, um neue Kunden zu gewinnen.
+
+Du kannst damit beispielsweise zeitlich begrenzte Angebote erstellen oder ehemaligen Kunden spezielle Rückkehrangebote machen.
+
+= 👥 BuddyPress/PS Community-Integration =
+
+PS Bloghosting kann mit BuddyPress und auch mit PS Community zusammenarbeiten.
+
+Bestimmte BuddyPress/PS Community-Funktionen können abhängig vom Hosting-Level freigeschaltet oder eingeschränkt werden.
+
+= ⚙️ Hosting-Level =
+
+Du kannst beliebig viele Hosting-Level erstellen und individuell konfigurieren.
+
+Für jedes Level kannst Du unter anderem festlegen:
+
+Preis
+Abrechnungsintervall
+verfügbare Plugins
+verfügbare Themes
+Speicherplatz
+Veröffentlichungsrechte
+Werbefreiheit
+weitere Premium-Funktionen
+
+= 🔄 Upgrades und Downgrades =
+
+Benutzer können ihre Webseite auf ein höheres oder niedrigeres Hosting-Level umstellen.
+
+Bei kostenpflichtigen Abonnements berücksichtigt PS Bloghosting die bestehende Laufzeit und berechnet Upgrades entsprechend.
+
+= 🌐 Für WordPress Multisite und ClassicPress =
+
+PS Bloghosting wurde für Multisite-Netzwerke entwickelt und kann sowohl mit WordPress Multisite als auch mit ClassicPress Multisite eingesetzt werden.
+
+Damit eignet sich das Plugin beispielsweise für:
+
+Bloghosting-Plattformen
+Community-Netzwerke
+Vereinsnetzwerke
+Unternehmensnetzwerke
+Bildungsplattformen
+Kundenportale
+kostenpflichtige Multisite-Angebote
 
 == ChangeLog ==
 

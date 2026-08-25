@@ -1,18 +1,18 @@
 <?php
 /**
  * Plugin Name: PS Bloghosting
- * Plugin URI:  https://power-source.github.io/ps-bloghosting/
+ * Plugin URI:  https://psource.eimen.net/wiki/ps-bloghosting/
  * Description: Das ultimative Bloghosting-Plugin für Multisites verwandelt reguläre Websites in mehrere PRO-Webseite-Abonnementstufen, die Zugriff auf Speicherplatz, Premium-Themen, Premium-Plugins und vieles mehr bieten!
- * Version:     1.0.1
+ * Version:     1.0.3
  * Author:      PSOURCE
- * Author URI:  https://github.com/Power-Source
+ * Author URI:  https://psource.eimen.net/
  * Text Domain: psts
  * Domain Path: /pro-sites-files/languages/
  * Network:     true
  * 
  *
  *
- * Copyright 2020-2026 PSOURCE (https://github.com/Power-Source)
+ * Copyright 2020-2026 PSOURCE (https://psource.eimen.net/)
  * Author - PSOURCE
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License (Version 2 - GPLv2) as published by
@@ -31,7 +31,7 @@
 
 class ProSites {
 
-	var $version = '1.0.1';
+	var $version = '1.0.3';
 	var $location;
 	var $language;
 	var $plugin_dir = '';
