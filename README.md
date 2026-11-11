@@ -14,6 +14,8 @@ Das Plugin basiert ursprünglich auf **Pro Sites von WPMU DEV** und wurde für *
 
 Du kannst damit aus einer normalen Multisite ein eigenes Bloghosting-System aufbauen – inklusive kostenpflichtiger Upgrades, Abonnements, Premium-Plugins, Premium-Themes, Werbefreiheit, Statistiken und zahlreichen weiteren Funktionen.
 
+📘 **[Zum vollständigen Handbuch](docs/index.md)**
+
 ---
 
 ## 🚀 Was kann PS Bloghosting?

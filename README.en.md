@@ -14,6 +14,8 @@ The plugin was originally based on **Pro Sites by WPMU DEV** and has been furthe
 
 It allows you to turn a regular Multisite installation into your own blog hosting system, including paid upgrades, subscriptions, premium plugins, premium themes, ad-free websites, statistics, and many other features.
 
+📘 **[Open the German handbook](docs/index.md)**
+
 ---
 
 ## 🚀 What can PS Bloghosting do?
