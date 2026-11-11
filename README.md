@@ -34,7 +34,7 @@ PS Bloghosting ermöglicht dir unter anderem:
 - Beitrags- und Seiten-Limits
 - Einschränkungen beim Veröffentlichen
 - Pay-to-Blog
-- BuddyPress-Integration
+- BuddyPress-/PS-Community-Integration
 - XML-RPC-Einschränkungen
 - ungefiltertes HTML für ausgewählte Hosting-Level
 - individuelle E-Mail-Benachrichtigungen
@@ -59,7 +59,7 @@ Beispiele:
 - zusätzliche Plugins
 - zusätzliche Themes
 - mehr Veröffentlichungsmöglichkeiten
-- BuddyPress-Funktionen
+- BuddyPress-/PS-Community-Funktionen
 - zusätzliche Webseiten
 - Premium-Support
 - eigene Domains oder weitere Erweiterungen deiner Multisite-Umgebung
@@ -159,19 +159,19 @@ Du kannst unter anderem:
 
 ---
 
-## 👥 BuddyPress-Integration
+## 👥 BuddyPress-/PS-Community-Integration
 
-PS Bloghosting kann mit BuddyPress zusammenarbeiten.
+PS Bloghosting kann mit BuddyPress und PS Community zusammenarbeiten.
 
-Damit kannst du beispielsweise bestimmte BuddyPress-Funktionen nur für ausgewählte Hosting-Level freischalten.
+Damit kannst du beispielsweise bestimmte BuddyPress- oder PS-Community-Funktionen nur für ausgewählte Hosting-Level freischalten.
 
 Dazu gehören unter anderem:
 
-- BuddyPress-Gruppen
-- Nachrichten
+- Gruppen erstellen
+- Nachrichten versenden
 - weitere soziale Funktionen
 
-![BuddyPress Integration](docs/images/buddypress-735x470-583x373.jpg)
+![BuddyPress-/PS-Community-Integration](docs/images/buddypress-735x470-583x373.jpg)
 
 ---
 
@@ -193,9 +193,9 @@ Außerdem können Hosting-Level Benutzern erlauben, Werbung auf weiteren Webseit
 
 Ermöglicht den Verkauf mehrerer Upgrades als Paket.
 
-### BuddyPress-Einschränkungen
+### BuddyPress-/PS-Community-Einschränkungen
 
-Bestimmte BuddyPress-Funktionen können auf ausgewählte Hosting-Level beschränkt werden.
+Bestimmte BuddyPress- oder PS-Community-Funktionen können auf ausgewählte Hosting-Level beschränkt werden.
 
 ### Veröffentlichungs-Limits
 
@@ -415,7 +415,7 @@ So kannst du deine Multisite flexibel als echtes Hosting-Angebot betreiben.
 - [x] Rückerstattungen
 - [x] Kündigungsverwaltung
 - [x] Globale Widgets
-- [x] BuddyPress-Integration
+- [x] BuddyPress-/PS-Community-Integration
 - [x] Werbefreie Hosting-Level
 - [x] Veröffentlichungs-Limits
 - [x] Pay-to-Blog

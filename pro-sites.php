@@ -1,9 +1,9 @@
 <?php
 /**
  * Plugin Name: PS Bloghosting
- * Plugin URI:  https://psource.eimen.net/wiki/ps-bloghosting/
+ * Plugin URI:  https://psource.eimen.net/psource/ps-bloghosting/
  * Description: PS Bloghosting verwandelt Deine WordPress- oder ClassicPress-Multisite in eine leistungsfähige Bloghosting-Plattform mit kostenlosen und kostenpflichtigen Hosting-Stufen, Premium-Plugins, Premium-Themes, Abonnements und zahlreichen weiteren Funktionen.
- * Version:     1.0.3
+ * Version:     1.0.4
  * Author:      PSOURCE
  * Author URI:  https://psource.eimen.net/
  * Text Domain: psts
@@ -31,7 +31,7 @@
 
 class ProSites {
 
-	var $version = '1.0.3';
+	var $version = '1.0.4';
 	var $location;
 	var $language;
 	var $plugin_dir = '';
@@ -5661,5 +5661,4 @@ function supporter_get_expire( $blog_id = false ) {
 function psts_text_body($phpmailer) {
 	$phpmailer->AltBody = strip_tags($phpmailer->Body);
 }
-
 

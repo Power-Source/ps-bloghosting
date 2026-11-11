@@ -34,7 +34,7 @@ PS Bloghosting provides features including:
 - post and page limits
 - publishing restrictions
 - Pay-to-Blog
-- BuddyPress integration
+- BuddyPress and PS Community integration
 - XML-RPC restrictions
 - unfiltered HTML for selected hosting levels
 - custom email notifications
@@ -59,7 +59,7 @@ Examples:
 - additional plugins
 - additional themes
 - expanded publishing options
-- BuddyPress features
+- BuddyPress and PS Community features
 - additional websites
 - premium support
 - custom domains or other extensions for your Multisite environment
@@ -159,19 +159,19 @@ You can:
 
 ---
 
-## 👥 BuddyPress integration
+## 👥 BuddyPress and PS Community integration
 
-PS Bloghosting can work with BuddyPress.
+PS Bloghosting can work with BuddyPress and PS Community.
 
-For example, you can make specific BuddyPress features available only to selected hosting levels.
+For example, you can make specific BuddyPress or PS Community features available only to selected hosting levels.
 
 These features include:
 
-- BuddyPress groups
-- messages
+- group creation
+- messaging
 - other social features
 
-![BuddyPress integration](docs/images/buddypress-735x470-583x373.jpg)
+![BuddyPress and PS Community integration](docs/images/buddypress-735x470-583x373.jpg)
 
 ---
 
@@ -193,9 +193,9 @@ Hosting levels can also allow users to disable advertising on additional website
 
 Allows you to sell multiple upgrades as a package.
 
-### BuddyPress restrictions
+### BuddyPress and PS Community restrictions
 
-Specific BuddyPress features can be limited to selected hosting levels.
+Specific BuddyPress or PS Community features can be limited to selected hosting levels.
 
 ### Publishing limits
 
@@ -415,7 +415,7 @@ This allows you to operate your Multisite installation flexibly as a complete ho
 - [x] Refunds
 - [x] Cancellation management
 - [x] Global widgets
-- [x] BuddyPress integration
+- [x] BuddyPress and PS Community integration
 - [x] Ad-free hosting levels
 - [x] Publishing limits
 - [x] Pay-to-Blog
