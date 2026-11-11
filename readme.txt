@@ -2,8 +2,9 @@
 Contributors: PSOURCE
 Tags: multisite, blogvorlagen, classicpress, wordpress, psource
 Requires at least: 4.9
-WordPress: 7.1.0
-ClassicPress: 2.7.1
+Requires CP: 2.7
+WordPress: 7.1.4
+ClassicPress: 2.7.4
 Stable tag: 1.0.3
 Requires PHP: 8.0
 License: GPLv2 or later
@@ -183,6 +184,10 @@ Kundenportale
 kostenpflichtige Multisite-Angebote
 
 == ChangeLog ==
+
+= 1.0.4 =
+* Das manuelle Zahlungsgateway unterstützt nun konfigurierbare Banküberweisungen mit Kontoinhaber, IBAN, optionalem BIC/Banknamen, eindeutiger Zahlungsreferenz und EPC-QR-Code in der Zahlungs-E-Mail.
+* Eigene Composer-Autoloader-Kennung für das Stripe-Gateway verhindert Klassenkonflikte mit anderen Plugins wie PS Fundraising.
 
 = 1.0.3 =
 * jQuery Sortable durch sortable.js ersetzt

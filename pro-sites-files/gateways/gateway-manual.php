@@ -69,10 +69,143 @@ class ProSites_Gateway_Manual {
 						       size="40"/>
 					</td>
 				</tr>
+				<tr valign="top">
+					<th scope="row"><?php _e( 'Kontoinhaber', 'psts' ); ?></th>
+					<td><input type="text" name="psts[mp_account_name]" value="<?php echo esc_attr( $psts->get_setting( 'mp_account_name' ) ); ?>" size="40"/></td>
+				</tr>
+				<tr valign="top">
+					<th scope="row"><?php _e( 'IBAN', 'psts' ); ?></th>
+					<td><input type="text" name="psts[mp_iban]" value="<?php echo esc_attr( $psts->get_setting( 'mp_iban' ) ); ?>" size="40" autocomplete="off"/></td>
+				</tr>
+				<tr valign="top">
+					<th scope="row"><?php _e( 'BIC (optional)', 'psts' ); ?></th>
+					<td><input type="text" name="psts[mp_bic]" value="<?php echo esc_attr( $psts->get_setting( 'mp_bic' ) ); ?>" size="40" autocomplete="off"/></td>
+				</tr>
+				<tr valign="top">
+					<th scope="row"><?php _e( 'Bankname (optional)', 'psts' ); ?></th>
+					<td><input type="text" name="psts[mp_bank_name]" value="<?php echo esc_attr( $psts->get_setting( 'mp_bank_name' ) ); ?>" size="40"/></td>
+				</tr>
+				<tr valign="top">
+					<th scope="row"><?php _e( 'Verwendungszweck-Präfix', 'psts' ); ?></th>
+					<td>
+						<input type="text" name="psts[mp_reference_prefix]" value="<?php echo esc_attr( $psts->get_setting( 'mp_reference_prefix', 'PSTS' ) ); ?>" size="40"/>
+						<p class="description"><?php _e( 'Eine eindeutige Zahlungsreferenz wird automatisch ergänzt.', 'psts' ); ?></p>
+					</td>
+				</tr>
 			</table>
 		</div>
 		<!--		</div>-->
 		<?php
+	}
+
+	private static function transfer_details() {
+		global $psts;
+
+		return array(
+			'account_name' => sanitize_text_field( $psts->get_setting( 'mp_account_name' ) ),
+			'iban'         => strtoupper( preg_replace( '/\s+/', '', sanitize_text_field( $psts->get_setting( 'mp_iban' ) ) ) ),
+			'bic'          => strtoupper( preg_replace( '/\s+/', '', sanitize_text_field( $psts->get_setting( 'mp_bic' ) ) ) ),
+			'bank_name'    => sanitize_text_field( $psts->get_setting( 'mp_bank_name' ) ),
+		);
+	}
+
+	private static function payment_reference( $blog_id ) {
+		global $psts;
+
+		$prefix = sanitize_text_field( $psts->get_setting( 'mp_reference_prefix', 'PSTS' ) );
+		$reference = trim( substr( $prefix, 0, 100 ) . ' ' . absint( $blog_id ) . '-' . gmdate( 'YmdHis' ) . '-' . wp_generate_password( 6, false, false ) );
+
+		return substr( $reference, 0, 140 );
+	}
+
+	private static function valid_iban( $iban ) {
+		if ( ! preg_match( '/^[A-Z]{2}[0-9]{2}[A-Z0-9]{11,30}$/', $iban ) ) {
+			return false;
+		}
+
+		$check = substr( $iban, 4 ) . substr( $iban, 0, 4 );
+		$check = preg_replace_callback( '/[A-Z]/', function ( $match ) {
+			return (string) ( ord( $match[0] ) - 55 );
+		}, $check );
+		$remainder = 0;
+		foreach ( str_split( $check ) as $digit ) {
+			$remainder = (int) ( ( $remainder . $digit ) % 97 );
+		}
+
+		return 1 === $remainder;
+	}
+
+	private static function render_qr_png( $payload ) {
+		if ( ! function_exists( 'gzcompress' ) ) {
+			return '';
+		}
+
+		$options = new \chillerlan\QRCode\QROptions( array( 'eccLevel' => \chillerlan\QRCode\QRCode::ECC_M ) );
+		$matrix = ( new \chillerlan\QRCode\QRCode( $options ) )->getMatrix( $payload )->matrix( true );
+		$modules = count( $matrix );
+		$scale = 6;
+		$quiet = 4;
+		$size = ( $modules + 2 * $quiet ) * $scale;
+		$raw = '';
+		for ( $y = 0; $y < $size; $y++ ) {
+			$row = '';
+			$my = intdiv( $y, $scale ) - $quiet;
+			for ( $x = 0; $x < $size; $x++ ) {
+				$mx = intdiv( $x, $scale ) - $quiet;
+				$row .= $my >= 0 && $my < $modules && $mx >= 0 && $mx < $modules && ! empty( $matrix[ $my ][ $mx ] ) ? "\x00" : "\xFF";
+			}
+			$raw .= "\x00" . $row;
+		}
+		$chunk = function ( $type, $data ) {
+			return pack( 'N', strlen( $data ) ) . $type . $data . pack( 'N', crc32( $type . $data ) );
+		};
+
+		return "\x89PNG\r\n\x1a\n" . $chunk( 'IHDR', pack( 'NNCCCCC', $size, $size, 8, 0, 0, 0, 0 ) ) . $chunk( 'IDAT', gzcompress( $raw, 9 ) ) . $chunk( 'IEND', '' );
+	}
+
+	private static function send_transfer_instructions( $email, $amount, $reference ) {
+		global $psts;
+
+		$details = self::transfer_details();
+		$currency = strtoupper( $psts->get_setting( 'currency' ) );
+		$amount = is_numeric( $amount ) ? number_format( (float) $amount, 2, '.', '' ) : '';
+		$body = '<p>' . esc_html__( 'Deine Zahlung ist ausstehend. Bitte überweise den Betrag mit folgenden Daten:', 'psts' ) . '</p><dl>';
+		foreach ( array(
+			__( 'Kontoinhaber', 'psts' ) => $details['account_name'],
+			__( 'Bank', 'psts' ) => $details['bank_name'],
+			__( 'IBAN', 'psts' ) => $details['iban'],
+			__( 'BIC', 'psts' ) => $details['bic'],
+			__( 'Betrag', 'psts' ) => $amount ? $amount . ' ' . $currency : '',
+			__( 'Verwendungszweck', 'psts' ) => $reference,
+		) as $label => $value ) {
+			if ( '' !== $value ) {
+				$body .= '<dt>' . esc_html( $label ) . '</dt><dd><code>' . esc_html( $value ) . '</code></dd>';
+			}
+		}
+		$body .= '</dl>';
+
+		$qr = '';
+		$autoload = dirname( __FILE__ ) . '/gateway-manual-files/vendor/autoload.php';
+		if ( 'EUR' === $currency && $amount && $details['account_name'] && self::valid_iban( $details['iban'] ) && is_readable( $autoload ) ) {
+			require_once $autoload;
+			$bic = preg_match( '/^[A-Z0-9]{8}([A-Z0-9]{3})?$/', $details['bic'] ) ? $details['bic'] : '';
+			$payload = implode( "\n", array( 'BCD', '001', '1', 'SCT', $bic, substr( $details['account_name'], 0, 70 ), $details['iban'], 'EUR' . $amount, '', '', substr( $reference, 0, 140 ) ) );
+			$qr = self::render_qr_png( $payload );
+			if ( $qr ) {
+				$body .= '<p><img src="cid:psts-epc-qr" width="240" height="240" alt="' . esc_attr__( 'SEPA-Überweisungs-QR-Code', 'psts' ) . '" /></p>';
+			}
+		}
+
+		$attach = function ( $phpmailer ) use ( $qr ) {
+			if ( $qr ) {
+				$phpmailer->addStringEmbeddedImage( $qr, 'psts-epc-qr', 'sepa-qr.png', 'base64', 'image/png' );
+			}
+		};
+		add_action( 'phpmailer_init', $attach );
+		$sent = wp_mail( $email, __( 'Deine Überweisungsdaten – Zahlung ausstehend', 'psts' ), '<html><body>' . $body . '</body></html>', array( 'Content-Type: text/html; charset=UTF-8' ) );
+		remove_action( 'phpmailer_init', $attach );
+
+		return $sent;
 	}
 
 	function payment_info( $payment_info, $blog_id ) {
@@ -318,6 +451,7 @@ class ProSites_Gateway_Manual {
 			}
 
 			$current_payment = self::calculate_cost( $blog_id, $_POST['level'], $_POST['period'], $process_data['COUPON_CODE'] );
+			$transfer_reference = self::payment_reference( $blog_id );
 			$modify          = self::is_modifying( $blog_id, $_POST, $current_payment );
 			
 			$headers = array(
@@ -348,7 +482,8 @@ class ProSites_Gateway_Manual {
 					'user_email'   => $email,
 					'site_address' => get_home_url(),
 					'manage_link'  => $blog_admin_url,
-					'coupon_code'  => ! empty( $process_data['COUPON_CODE'] ) ? $process_data['COUPON_CODE'] : ''
+					'coupon_code'  => ! empty( $process_data['COUPON_CODE'] ) ? $process_data['COUPON_CODE'] : '',
+					'reference'    => $transfer_reference,
 				) );
 
 				$message_parts = apply_filters( 'prosites_manual_payment_email_info', array(
@@ -360,6 +495,7 @@ class ProSites_Gateway_Manual {
 					'manage_text'    => sprintf( __( "Manage Site: %s", 'psts' ), $blog_admin_url ),
 					'coupon_used'    => sprintf( __( "Coupon Used: %s", 'psts' ), $message_fields['coupon_code'] ),
 					'payment_amount' => sprintf( __( "Payment Amount: %s", 'psts' ), $current_payment ),
+					'reference'      => sprintf( __( 'Transfer Reference: %s', 'psts' ), $message_fields['reference'] ),
 				), $message_fields );
 
 				if ( ! empty( $_POST['psts_mp_text'] ) ) {
@@ -402,7 +538,8 @@ class ProSites_Gateway_Manual {
 					'activation_link' => $activate_url,
 					'site_address'    => get_home_url(),
 					'manage_link'     => $blog_admin_url,
-					'coupon_code'     => ! empty( $process_data['COUPON_CODE'] ) ? $process_data['COUPON_CODE'] : ''
+					'coupon_code'     => ! empty( $process_data['COUPON_CODE'] ) ? $process_data['COUPON_CODE'] : '',
+					'reference'       => $transfer_reference,
 				) );
 
 				$message_parts = apply_filters( 'prosites_manual_payment_email_info', array(
@@ -416,6 +553,7 @@ class ProSites_Gateway_Manual {
 					'manage_text'     => sprintf( __( "Manage Site: %s", 'psts' ), $blog_admin_url ),
 					'coupon_used'     => ! empty( $message_fields['coupon_code'] ) ? sprintf( __( "Coupon Used: %s", 'psts' ), $message_fields['coupon_code'] ) : '',
 					'payment_amount'  => sprintf( __( "Payment Amount: %s", 'psts' ), $current_payment ),
+					'reference'       => sprintf( __( 'Transfer Reference: %s', 'psts' ), $message_fields['reference'] ),
 				), $message_fields );
 
 				if ( ! empty( $_POST['psts_mp_text'] ) ) {
@@ -434,6 +572,7 @@ class ProSites_Gateway_Manual {
 				ProSites_Helper_Session::session( array( 'new_blog_details', 'manual_submitted' ), true );
 			}
 			do_action( 'prosites_manual_payment_email_sent', $message, $message_parts, $message_fields );
+			self::send_transfer_instructions( $email, $current_payment, $transfer_reference );
 
 			$recurring = $psts->get_setting( 'recurring_subscriptions', true );
 
@@ -443,6 +582,7 @@ class ProSites_Gateway_Manual {
 				'period'    => (int) $_POST['period'],
 				'gateway'   => self::get_slug(),
 				'amount'    => $current_payment,
+				'reference' => $transfer_reference,
 				'recurring' => $recurring,
 				'trialing'  => $psts->is_trial_allowed( $blog_id ),
 			);

@@ -1,4 +1,7 @@
 {
+    "config": {
+        "autoloader-suffix": "PSBloghostingStripeGateway"
+    },
     "require": {
         "stripe/stripe-php": "^17.3"
     }

@@ -2,7 +2,7 @@
 /**
  * Plugin Name: PS Bloghosting
  * Plugin URI:  https://psource.eimen.net/wiki/ps-bloghosting/
- * Description: Das ultimative Bloghosting-Plugin für Multisites verwandelt reguläre Websites in mehrere PRO-Webseite-Abonnementstufen, die Zugriff auf Speicherplatz, Premium-Themen, Premium-Plugins und vieles mehr bieten!
+ * Description: PS Bloghosting verwandelt Deine WordPress- oder ClassicPress-Multisite in eine leistungsfähige Bloghosting-Plattform mit kostenlosen und kostenpflichtigen Hosting-Stufen, Premium-Plugins, Premium-Themes, Abonnements und zahlreichen weiteren Funktionen.
  * Version:     1.0.3
  * Author:      PSOURCE
  * Author URI:  https://psource.eimen.net/

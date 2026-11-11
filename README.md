@@ -1,5 +1,13 @@
 # PS Bloghosting
 
+**Deutsch** | [English](README.en.md)
+
+[![Version](https://img.shields.io/badge/Version-1.0.4-2271b1?style=flat-square)](readme.txt)
+![PHP](https://img.shields.io/badge/PHP-8.0%2B-777bb4?style=flat-square&logo=php&logoColor=white)
+![WordPress](https://img.shields.io/badge/WordPress-bis%207.1.4-21759b?style=flat-square&logo=wordpress&logoColor=white)
+![ClassicPress](https://img.shields.io/badge/ClassicPress-2.7.4-03768e?style=flat-square)
+[![Lizenz](https://img.shields.io/badge/Lizenz-GPL--2.0--or--later-2ea44f?style=flat-square)](https://www.gnu.org/licenses/gpl-2.0.html)
+
 **PS Bloghosting** verwandelt WordPress Multisite in eine leistungsfähige Bloghosting-Plattform mit kostenlosen und kostenpflichtigen Webseiten, verschiedenen Hosting-Stufen und optionalen Premium-Funktionen.
 
 Das Plugin basiert ursprünglich auf **Pro Sites von WPMU DEV** und wurde für **PSOURCE** weiterentwickelt, modernisiert und an aktuelle WordPress-/PHP-Versionen angepasst.
@@ -56,10 +64,6 @@ Beispiele:
 - Premium-Support
 - eigene Domains oder weitere Erweiterungen deiner Multisite-Umgebung
 
-
-
-
-
 ---
 
 ## 💰 Hosting-Pakete verkaufen
@@ -91,7 +95,7 @@ Benutzer sehen dadurch auf einen Blick:
 - Zahlungsintervalle
 - enthaltene Funktionen
 
-![Preistabelle](http://web.archive.org/web/20160320133631im_/https://premium.wpmudev.org/wp-content/uploads/2009/01/price-table-583x373.png)
+![Preistabelle](docs/images/price-table-583x373.png)
 
 ---
 
@@ -110,7 +114,7 @@ Die verfügbaren Zahlungsarten können in den Einstellungen festgelegt werden.
 
 Der Checkout ist direkt in PS Bloghosting integriert, sodass Benutzer ihr Hosting-Level auswählen und anschließend bezahlen können.
 
-![Zahlungsabwicklung](http://web.archive.org/web/20160320133631im_/https://premium.wpmudev.org/wp-content/uploads/2015/05/money-735x4701-583x373.jpg)
+![Zahlungsabwicklung](docs/images/money-735x4701-583x373.jpg)
 
 ---
 
@@ -151,7 +155,7 @@ Du kannst unter anderem:
 - Webseiten individuell anpassen
 - Upgrades und Downgrades verwalten
 
-![Webseitenverwaltung](http://web.archive.org/web/20160320133631im_/https://premium.wpmudev.org/wp-content/uploads/2015/05/bulk-upgrade-735x470-583x373.jpg)
+![Webseitenverwaltung](docs/images/bulk-upgrade-735x470-583x373.jpg)
 
 ---
 
@@ -167,7 +171,7 @@ Dazu gehören unter anderem:
 - Nachrichten
 - weitere soziale Funktionen
 
-![BuddyPress Integration](http://web.archive.org/web/20160320133631im_/https://premium.wpmudev.org/wp-content/uploads/2015/05/buddypress-735x470-583x373.jpg)
+![BuddyPress Integration](docs/images/buddypress-735x470-583x373.jpg)
 
 ---
 
@@ -209,7 +213,7 @@ Du kannst festlegen, wie viele Beiträge, Seiten oder andere Inhaltstypen ein be
 
 Premium-Plugins können gezielt für bestimmte Hosting-Level freigeschaltet werden.
 
-![Premium Plugins](http://web.archive.org/web/20160320133631im_/https://premium.wpmudev.org/wp-content/uploads/2009/01/features-583x373.png)
+![Premium Plugins](docs/images/features-583x373.png)
 
 ### Premium Support
 
@@ -245,7 +249,7 @@ Damit kannst du beispielsweise:
 - Benutzer über Änderungen informieren
 - Rückkehrangebote nach einer Kündigung versenden
 
-![Automatische E-Mails](http://web.archive.org/web/20160320133631im_/https://premium.wpmudev.org/wp-content/uploads/2015/05/auto-email-735x470-583x373.jpg)
+![Automatische E-Mails](docs/images/auto-email-735x470-583x373.jpg)
 
 ---
 
@@ -260,7 +264,7 @@ Damit kannst du beispielsweise:
 - Rabatte vergeben
 - Rückkehrangebote für ehemalige Kunden erstellen
 
-![Gutscheine](http://web.archive.org/web/20160320133631im_/https://premium.wpmudev.org/wp-content/uploads/2015/05/prosite-coupons-735x470-583x373.jpg)
+![Gutscheine](docs/images/prosite-coupons-735x470-583x373.jpg)
 
 ---
 
@@ -293,7 +297,7 @@ Zum Beispiel:
 
 Für jedes Level kannst du eigene Preise und Funktionen definieren.
 
-![Hosting-Level erstellen](http://web.archive.org/web/20160320133631im_/https://premium.wpmudev.org/wp-content/uploads/2011/10/addnewlevel.png)
+![Hosting-Level erstellen](docs/images/addnewlevel.png)
 
 ---
 
@@ -310,7 +314,7 @@ Dazu gehören unter anderem:
 - Zahlungsoptionen
 - verschiedene Hosting-Funktionen
 
-![PS Bloghosting Einstellungen](http://web.archive.org/web/20160320133631im_/https://premium.wpmudev.org/wp-content/uploads/2011/10/problogssettings.png)
+![PS Bloghosting Einstellungen](docs/images/problogssettings.png)
 
 ---
 
@@ -324,7 +328,7 @@ kannst du die benötigten Module und Zahlungsanbieter aktivieren.
 
 Die einzelnen Module besitzen eigene Einstellungen.
 
-![Module](http://web.archive.org/web/20160320133631im_/https://premium.wpmudev.org/wp-content/uploads/2011/10/problogsmeny.png)
+![Module](docs/images/problogsmeny.png)
 
 ---
 
@@ -334,7 +338,7 @@ Anschließend kannst du die gewünschten Zahlungsanbieter konfigurieren.
 
 Je nach verfügbarer Gateway-Unterstützung kannst du beispielsweise PayPal, Stripe oder manuelle Zahlungen verwenden.
 
-![Zahlungsanbieter](http://web.archive.org/web/20160320133631im_/https://premium.wpmudev.org/wp-content/uploads/2011/10/gateways.png)
+![Zahlungsanbieter](docs/images/gateways.png)
 
 ---
 
@@ -346,7 +350,7 @@ Die verfügbaren Hosting-Level werden übersichtlich dargestellt.
 
 Das aktuell verwendete Level wird dabei hervorgehoben.
 
-![Hosting-Level auswählen](http://web.archive.org/web/20160320133631im_/https://premium.wpmudev.org/wp-content/uploads/2011/11/pro-sites-subscription-selection.png)
+![Hosting-Level auswählen](docs/images/pro-sites-subscription-selection.png)
 
 ---
 

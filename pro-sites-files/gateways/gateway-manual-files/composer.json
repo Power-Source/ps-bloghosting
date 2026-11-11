@@ -1,0 +1,9 @@
+{
+    "config": {
+        "autoloader-suffix": "PSBloghostingManualGateway"
+    },
+    "require": {
+        "chillerlan/php-qrcode": "^4.3",
+        "chillerlan/php-settings-container": "^2.1.6"
+    }
+}
