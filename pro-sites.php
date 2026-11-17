@@ -37,6 +37,7 @@ class ProSites {
 	var $plugin_dir = '';
 	var $plugin_url = '';
 	var $pro_sites = array();
+	var $column_fields = array();
 	var $level = array();
 	var $checkout_processed = false;
 	var $tcpdf = array(); //Array for PDF settings

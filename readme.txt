@@ -185,6 +185,9 @@ kostenpflichtige Multisite-Angebote
 
 == ChangeLog ==
 
+= 1.0.5 =
+* PHP-Deprecation durch eine dynamische Cache-Eigenschaft in der Netzwerk-Webseitenübersicht behoben.
+
 = 1.0.4 =
 * Das manuelle Zahlungsgateway unterstützt nun konfigurierbare Banküberweisungen mit Kontoinhaber, IBAN, optionalem BIC/Banknamen, eindeutiger Zahlungsreferenz und EPC-QR-Code in der Zahlungs-E-Mail.
 * Eigene Composer-Autoloader-Kennung für das Stripe-Gateway verhindert Klassenkonflikte mit anderen Plugins wie PS Fundraising.
